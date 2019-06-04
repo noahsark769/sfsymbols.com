@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from "react-helmet";
 import Nav from '../components/Nav';
+import Header from '../components/Header';
 // import ReactGA from 'react-ga';
 
 const OuterWrapper = styled.div`
     width: 100vw;
     height: 100vh;
-    background-color: #0c5459
+    background-color: #125366;
 `;
 
 class Main extends React.Component {
@@ -26,7 +27,8 @@ class Main extends React.Component {
                     <meta property="og:title" content="SF Symbols Reference" />
                     <meta property="og:description" content="SF Symbols iOS Icons Reference Documentation" />
                 </Helmet>
-                <Nav />>
+                <Nav />
+                <Header numSymbols={this.props.pageContext.symbols.length.toLocaleString()} />
             </OuterWrapper>
         );
     }
