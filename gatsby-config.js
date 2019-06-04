@@ -21,7 +21,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-favicon`,
     `gatsby-plugin-force-trailing-slashes`,
     `gatsby-plugin-styled-components`
   ],
