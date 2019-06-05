@@ -24,7 +24,12 @@ const readJsonAsync = (filepath, callback) => {
     });
 }
 
-const combineSymbolDataWithExampleData = (data) => {
+const combineSymbolDataWithExampleData = (data, restrictedData) => {
+    let restrictedMap = new Map();
+    for (let restrictedDatum of restrictedData) {
+        restrictedMap.set(restrictedDatum.symbolName, restrictedDatum.feature);
+    }
+
     return Promise.all(data.map((symbolName) => {
         const examplesDirectoryPath = path.resolve(`src/data/export/${symbolName}/`);
         if (!fs.existsSync(examplesDirectoryPath)) {
@@ -37,7 +42,8 @@ const combineSymbolDataWithExampleData = (data) => {
         return {
             name: symbolName,
             lightBasePath: `export/${symbolName}/light.png`,
-            darkBasePath: `export/${symbolName}/dark.png`
+            darkBasePath: `export/${symbolName}/dark.png`,
+            restriction: restrictedMap.get(symbolName)
         };
     }));
 };
@@ -49,27 +55,29 @@ exports.createPages = ({ graphql, actions }) => {
         const templateComponent = path.resolve(`src/templates/Main.jsx`);
 
         readJsonAsync(path.resolve(`src/data/symbols.json`)).then((data) => {
-            combineSymbolDataWithExampleData(data).then((symbols) => {
-                createPage({
-                    path: '/',
-                    component: templateComponent,
-                    context: {
-                        symbols: symbols
-                    }
-                });
+            readJsonAsync(path.resolve(`src/data/restrictedSymbols.json`)).then((restrictedData) => {
+                combineSymbolDataWithExampleData(data, restrictedData).then((symbols) => {
+                    createPage({
+                        path: '/',
+                        component: templateComponent,
+                        context: {
+                            symbols: symbols
+                        }
+                    });
 
-                // filters.forEach((filter) => {
-                //     createPage({
-                //         path: `/${filter.name}/`,
-                //         component: templateComponent,
-                //         context: {
-                //             filters: filters,
-                //             initiallySelectedFilter: filter
-                //         },
-                //     })
-                // });
+                    // filters.forEach((filter) => {
+                    //     createPage({
+                    //         path: `/${filter.name}/`,
+                    //         component: templateComponent,
+                    //         context: {
+                    //             filters: filters,
+                    //             initiallySelectedFilter: filter
+                    //         },
+                    //     })
+                    // });
+                    resolve();
+                });
             });
-            resolve();
         });
     })
 }
