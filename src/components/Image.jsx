@@ -35,6 +35,8 @@ const Image = (props) => (
         <Img
           alt={props.alt}
           sizes={imageSizes}
+          width={100}
+          height={100}
         />
       );
     }}

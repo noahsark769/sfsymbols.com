@@ -3,12 +3,18 @@ import styled from 'styled-components';
 import { Helmet } from "react-helmet";
 import Nav from '../components/Nav';
 import Header from '../components/Header';
+import FlowGrid from '../components/FlowGrid';
+import Symbol from '../components/Symbol';
 // import ReactGA from 'react-ga';
 
 const OuterWrapper = styled.div`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: #125366;
+`;
+
+const IconsContainer = styled.div`
+    
 `;
 
 class Main extends React.Component {
@@ -29,6 +35,13 @@ class Main extends React.Component {
                 </Helmet>
                 <Nav />
                 <Header numSymbols={this.props.pageContext.symbols.length.toLocaleString()} />
+                <IconsContainer>
+                    <FlowGrid columns={10}>
+                        {this.props.pageContext.symbols.map(function(symbol) {
+                            return (<Symbol symbol={symbol} />);
+                        })}
+                    </FlowGrid>
+                </IconsContainer>
             </OuterWrapper>
         );
     }

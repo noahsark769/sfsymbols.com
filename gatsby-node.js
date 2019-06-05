@@ -37,7 +37,7 @@ const combineSymbolDataWithExampleData = (data) => {
         return {
             name: symbolName,
             lightBasePath: `export/${symbolName}/light.png`,
-            darkPasePath: `export/${symbolName}/dark.png`
+            darkBasePath: `export/${symbolName}/dark.png`
         };
     }));
 };
