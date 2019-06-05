@@ -1,7 +1,7 @@
 # sfsymbols.com
 sfsymbols.com is a reference website for [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/), the iOS icon system in iOS 13+.
 
-This repo contains a [Gatsby](https://www.gatsbyjs.org/) site which allows browsing and searching through the symbols on the web.
+This repo contains a [Gatsby](https://www.gatsbyjs.org/) site which allows browsing and searching through the symbols on the web. To see the sample app which generated the symbol images, check out [SFSymbolGenerator](https://github.com/noahsark769/SFSymbolsGenerator).
 
 ## Developing
 Clone the repo, then:
