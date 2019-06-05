@@ -5,7 +5,7 @@ import Nav from '../components/Nav';
 import Header from '../components/Header';
 import Symbol from '../components/Symbol';
 import SearchBar from '../components/SearchBar';
-// import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 
 const OuterWrapper = styled.div`
     width: 100%;
@@ -58,7 +58,7 @@ class Main extends React.Component {
     handleSearchBarChange(text) {
         this.setState({
             filteredSymbols: this.props.pageContext.symbols.filter(function(symbol) {
-                return symbol.name.includes(text);
+                return symbol.name.toLowerCase().includes(text.toLowerCase());
             })
         })
     }
