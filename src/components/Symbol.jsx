@@ -1,12 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from './Image';
+import { IoMdCopy } from "react-icons/io";
+
+// https://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
+function selectElementText(el, win) {
+    win = win || window;
+    var doc = win.document, sel, range;
+    if (win.getSelection && doc.createRange) {
+        sel = win.getSelection();
+        range = doc.createRange();
+        range.selectNodeContents(el);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else if (doc.body.createTextRange) {
+        range = doc.body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+    }
+}
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    position: relative;
+
+    &:hover .copy {
+        display: block;
+    }
 `;
 
 const ImageWrapper = styled.div`
@@ -33,15 +56,33 @@ const Restriction = styled.div`
     }
 `;
 
-const Symbol = (props) => {
-    return (
-        <Container>
-            <ImageWrapper>
-                <Image filename={props.symbol.lightBasePath} alt={props.symbol.name} width={50}/>
-            </ImageWrapper>
-            <NameWrapper>{props.symbol.name}</NameWrapper>
-            {props.symbol.restriction && <Restriction><a href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/#symbols-for-use-as-is">Usage restricted to {props.symbol.restriction}</a></Restriction>}
-        </Container>
-    );
+const CopyContainer = styled.div`
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+`;
+
+class Symbol extends React.Component {
+    handleCopyClick() {
+        console.log(this.nameElement);
+        selectElementText(this.nameElement, window);
+        document.execCommand('copy');
+        console.log(this.props.symbol.name);
+    }
+
+    render() {
+        return (
+            <Container>
+                <ImageWrapper>
+                    <Image filename={this.props.symbol.lightBasePath} alt={this.props.symbol.name} width={50}/>
+                </ImageWrapper>
+                <NameWrapper ref={(element) => this.nameElement = element}>{this.props.symbol.name}</NameWrapper>
+                {this.props.symbol.restriction && <Restriction><a href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/#symbols-for-use-as-is">Usage restricted to {this.props.symbol.restriction}</a></Restriction>}
+                <CopyContainer className="copy" onClick={this.handleCopyClick.bind(this)}><IoMdCopy size="20" color="white" /></CopyContainer>
+            </Container>
+        );
+    }
 };
 export default Symbol;
