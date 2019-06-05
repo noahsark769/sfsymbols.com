@@ -14,7 +14,29 @@ const OuterWrapper = styled.div`
 `;
 
 const IconsContainer = styled.div`
-    
+    margin: 40px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+`;
+
+const SymbolWrapper = styled.div`
+    flex: 1 0;
+    flex-basis: 17%; // 5 per row
+    max-width: 300px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: center;
+
+    @media all and (max-width: 900px) {
+        flex-basis: 21%; // 4 per row
+    }
+
+    @media all and (max-width: 600px) {
+        flex-basis: 26%; // 3 per row
+    }
 `;
 
 class Main extends React.Component {
@@ -36,11 +58,13 @@ class Main extends React.Component {
                 <Nav />
                 <Header numSymbols={this.props.pageContext.symbols.length.toLocaleString()} />
                 <IconsContainer>
-                    <FlowGrid columns={10}>
                         {this.props.pageContext.symbols.map(function(symbol) {
-                            return (<Symbol symbol={symbol} />);
+                            return (
+                                <SymbolWrapper key={symbol.name}>
+                                    <Symbol symbol={symbol} />
+                                </SymbolWrapper>
+                            );
                         })}
-                    </FlowGrid>
                 </IconsContainer>
             </OuterWrapper>
         );

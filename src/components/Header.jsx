@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    width: 600px;
+    max-width: 600px;
     margin: 0 auto;
-    padding-top: 100px;
+    padding: 100px 40px 40px 40px;
 `;
 
 const Heading = styled.h1`

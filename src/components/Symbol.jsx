@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Image from './Image';
 
 const Container = styled.div`
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 20px;
 `;
 
@@ -12,12 +14,18 @@ const ImageWrapper = styled.div`
     height: 50px;
 `;
 
+const NameWrapper = styled.p`
+    color: white;
+    margin-top: 10px;
+`;
+
 const Symbol = (props) => {
-    console.log(props.symbol);
     return (
         <Container>
-            <ImageWrapper><Image filename={props.symbol.lightBasePath} alt={props.symbol.name}/></ImageWrapper>
-            <p>{props.symbol.name}</p>
+            <ImageWrapper>
+                <Image filename={props.symbol.lightBasePath} alt={props.symbol.name} width={50}/>
+            </ImageWrapper>
+            <NameWrapper>{props.symbol.name}</NameWrapper>
         </Container>
     );
 };

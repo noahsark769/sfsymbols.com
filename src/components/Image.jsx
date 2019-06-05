@@ -29,14 +29,13 @@ const Image = (props) => (
       if (!image) {
         return null;
       }
-      
+
       const imageSizes = image.node.childImageSharp.sizes;
       return (
-        <Img
+        <img
           alt={props.alt}
-          sizes={imageSizes}
-          width={100}
-          height={100}
+          src={imageSizes.src}
+          style={{width: "100%", height: "100%", "object-fit": "contain"}}
         />
       );
     }}
