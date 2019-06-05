@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import Nav from '../components/Nav';
 import Header from '../components/Header';
 import Symbol from '../components/Symbol';
+import SearchBar from '../components/SearchBar';
 // import ReactGA from 'react-ga';
 
 const OuterWrapper = styled.div`
@@ -18,6 +19,11 @@ const IconsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+
+    &::after {
+        content: "";
+        flex: auto;
+    }
 `;
 
 const SymbolWrapper = styled.div`
@@ -38,9 +44,23 @@ const SymbolWrapper = styled.div`
     }
 `;
 
+const SearchBarWrapper = styled.div`
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 0 40px;
+`;
+
 class Main extends React.Component {
     state = {
-        
+        filteredSymbols: this.props.pageContext.symbols
+    }
+
+    handleSearchBarChange(text) {
+        this.setState({
+            filteredSymbols: this.props.pageContext.symbols.filter(function(symbol) {
+                return symbol.name.includes(text);
+            })
+        })
     }
 
     render() {
@@ -56,8 +76,11 @@ class Main extends React.Component {
                 </Helmet>
                 <Nav />
                 <Header numSymbols={this.props.pageContext.symbols.length.toLocaleString()} />
+                <SearchBarWrapper>
+                    <SearchBar onChange={this.handleSearchBarChange.bind(this) }/>
+                </SearchBarWrapper>
                 <IconsContainer>
-                        {this.props.pageContext.symbols.map(function(symbol) {
+                        {this.state.filteredSymbols.map(function(symbol) {
                             return (
                                 <SymbolWrapper key={symbol.name}>
                                     <Symbol symbol={symbol} />

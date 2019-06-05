@@ -20,6 +20,11 @@ const Subheading = styled.div`
     line-height: 20px;
     margin-top: 30px;
     text-align: center;
+
+    a, a:hover, a:visited {
+        color: inherit;
+        text-decoration: underline;
+    }
 `;
 
 const Header = (props) => {
@@ -27,7 +32,7 @@ const Header = (props) => {
         <Container>
             <Heading>{props.numSymbols} SF Symbols</Heading>
             <Subheading>SF Symbols is the system icon framework in iOS 13+. This site lists all the available icons and their names.</Subheading>
-            <Subheading>This site is a work in progress. You can get in touch with me on Twitter: @noahsark769</Subheading>
+            <Subheading>This site will always be <a href="https://github.com/noahsark769/sfsymbols.com">open source</a> and ad-free. If you'd like to support this project and others like it, please download <a href="https://itunes.apple.com/us/app/cifilter-io/id1457458557?mt=8">CIFilter.io</a>.</Subheading>
         </Container>
     );
 };
