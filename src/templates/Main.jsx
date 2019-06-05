@@ -93,8 +93,8 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        // ReactGA.initialize('');
-        // ReactGA.pageview(window.location.pathname + window.location.search);
+        ReactGA.initialize('UA-141512974-1');
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }
 };
 export default Main;
