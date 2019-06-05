@@ -31,7 +31,7 @@ const Header = (props) => {
     return (
         <Container>
             <Heading>{props.numSymbols} SF Symbols</Heading>
-            <Subheading>SF Symbols is the system icon framework in iOS 13+. This site lists all the available icons and their names.</Subheading>
+            <Subheading><a href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/">SF Symbols</a> is the system icon framework in iOS 13+. This site lists all the available icons and their names.</Subheading>
             <Subheading>This site will always be <a href="https://github.com/noahsark769/sfsymbols.com">open source</a> and ad-free. If you'd like to support this project and others like it, please download <a href="https://itunes.apple.com/us/app/cifilter-io/id1457458557?mt=8">CIFilter.io</a>.</Subheading>
         </Container>
     );
