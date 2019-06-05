@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Helmet } from "react-helmet";
 import Nav from '../components/Nav';
 import Header from '../components/Header';
-import FlowGrid from '../components/FlowGrid';
 import Symbol from '../components/Symbol';
 // import ReactGA from 'react-ga';
 
