@@ -34,8 +34,10 @@ const combineSymbolDataWithExampleData = (data, restrictedData) => {
         const examplesDirectoryPath = path.resolve(`src/data/export/${symbolName}/`);
         if (!fs.existsSync(examplesDirectoryPath)) {
             return Promise.resolve({
-                ...filter,
-                examples: null
+                name: symbolName,
+                lightBasePath: null,
+                darkBasePath: null,
+                restriction: restrictedMap.get(symbolName)
             });
         }
 
