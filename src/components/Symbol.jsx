@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from './Image';
 import { IoMdCopy } from "react-icons/io";
 
 // https://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
@@ -30,11 +29,6 @@ const Container = styled.div`
     &:hover .copy {
         display: block;
     }
-`;
-
-const ImageWrapper = styled.div`
-    width: 50px;
-    height: 50px;
 `;
 
 const NameWrapper = styled.p`
@@ -75,9 +69,6 @@ class Symbol extends React.Component {
     render() {
         return (
             <Container>
-                <ImageWrapper>
-                    <Image filename={this.props.symbol.lightBasePath} alt={this.props.symbol.name} width={50}/>
-                </ImageWrapper>
                 <NameWrapper ref={(element) => this.nameElement = element}>{this.props.symbol.name}</NameWrapper>
                 {this.props.symbol.restriction && <Restriction><a href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/#symbols-for-use-as-is">Usage restricted to {this.props.symbol.restriction}</a></Restriction>}
                 <CopyContainer className="copy" onClick={this.handleCopyClick.bind(this)}><IoMdCopy size="20" color="white" /></CopyContainer>
