@@ -33,7 +33,8 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
-    "deploy": "gatsby build --prefix-paths && cp CNAME ./public && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && cp CNAME ./public && gh-pages -d public",
+    "gatsby-build": "gatsby build --prefix-paths"
   },
   "devDependencies": {
     "prettier": "^1.14.2"
