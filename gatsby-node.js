@@ -66,17 +66,6 @@ exports.createPages = ({ graphql, actions }) => {
                             symbols: symbols
                         }
                     });
-
-                    // filters.forEach((filter) => {
-                    //     createPage({
-                    //         path: `/${filter.name}/`,
-                    //         component: templateComponent,
-                    //         context: {
-                    //             filters: filters,
-                    //             initiallySelectedFilter: filter
-                    //         },
-                    //     })
-                    // });
                     resolve();
                 });
             });
